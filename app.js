@@ -12,8 +12,8 @@ app.use(express.static("public"));
 
 
 
-app.get("/", function(req,res){
-  res.render("home");
+app.get("/cart", function(req,res){
+  res.render("cart");
 });
 
 

@@ -1,174 +1,192 @@
 <%- include("partials/header") -%>
         <!--shopping cart -->
-        <div>
-            <div class="container mb-5 ">
-                  <div class="row">
-                    <div class="col-12">
-          
-                      <!-- Heading -->
-                      <h3 class="py-3 mb-10 text-center">Your Cart</h3>
-          
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-md-7">
-          
-                      <!-- List group -->
-                      <ul class="list-group list-group-lg list-group-flush-x mb-6">
-                        <li class="list-group-item">
-                          <div class="row align-items-center">
-                            <div class="col-3">
-          
-                              <!-- Image -->
-                              <a href="product.html">
-                                <img src="" alt="..." class="img-fluid">
-                              </a>
-          
-                            </div>
-                            <div class="col">
-          
-                              <!-- Title -->
-                              <div class="d-flex mb-2 font-weight-bold">
-                                <a class="text-body" href="product.html">Product title</a> <span class="ml-auto">$00.00</span>
-                              </div>
-          
-                              <!-- Text -->
-                              <p class="mb-7 font-size-sm text-muted">
-                                Size: M <br>
-                                Color: Red
-                              </p>
-          
-                              <!--Footer -->
-                              <div class="d-flex align-items-center">
-          
-                                <!-- Select -->
-                                <select class="custom-select custom-select-xxs w-auto">
-                                  <option value="1">1</option>
-                                  <option value="1">2</option>
-                                  <option value="1">3</option>
-                                </select>
-          
-                                <!-- Remove -->
-                                <a class="font-size-xs text-gray-400 ml-auto" href="#!">
-                                  <i class="fa fa-remove"></i> Remove
-                                </a>
-          
-                              </div>
-          
-                            </div>
-                          </div>
-                        </li>
-                        <li class="list-group-item">
-                          <div class="row align-items-center">
-                            <div class="col-3">
-          
-                              <!-- Image -->
-                              <a href="product.html">
-                                <img src="" alt="..." class="img-fluid">
-                              </a>
-          
-                            </div>
-                            <div class="col">
-          
-                              <!-- Title -->
-                              <div class="d-flex mb-2 font-weight-bold">
-                                <a class="text-body" href="product.html">Product title</a> <span class="ml-auto">$00.00</span>
-                              </div>
-          
-                              <!-- Text -->
-                              <p class="mb-7 font-size-sm text-muted">
-                                Color: Brown
-                              </p>
-          
-                              <!--Footer -->
-                              <div class="d-flex align-items-center">
-          
-                                <!-- Select -->
-                                <select class="custom-select custom-select-xxs w-auto">
-                                  <option value="1">1</option>
-                                  <option value="1">2</option>
-                                  <option value="1">3</option>
-                                </select>
-          
-                                <!-- Remove -->
-                                <a class="font-size-xs text-gray-400 ml-auto" href="#!">
-                                  <i class="fa fa-remove"></i> Remove
-                                </a>
-          
-                              </div>
-          
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-          
-                      <!-- Footer -->
-                      <div class="row align-items-end justify-content-between mb-10 mb-md-0">
-                        <div class="col-12 col-md-7">
-          
-                          <!-- Coupon -->
-                          <form class="mb-7 py-3 mb-md-0">
-                            <label class="font-size-sm font-weight-bold" for="cartCouponCode">
-                              Coupon code:
-                            </label>
-                            <div class="row form-row">
-                              <div class="col">
-          
-                                <!-- Input -->
-                                <input class="form-control form-control-sm" id="cartCouponCode" type="text" placeholder="Enter coupon code*">
-          
-                              </div>
-                              <div class="col-auto">
-          
-                                <!-- Button -->
-                                <button class="btn btn-sm btn-dark" type="submit">
-                                  Apply
-                                </button>
-          
-                              </div>
-                            </div>
-                          </form>
-          
-                        </div>
+      <script src="/js/cart.js"></script>
+      <% if(!cart || totalPrice == 0 ){ %>
+        <div class="container mb-5 ">
+          <div class="row">
+            <div class="col-12">
+    
+              <!-- Heading -->
+              <h3 class="py-3 mb-10 text-center">Your Cart is empty</h3>
+              <a class="btn btn-link btn-sm px-0 text-body" href="/">
+                <i class="fa fa-arrow-left mr-2"></i> Continue Shopping
+              </a>
+            </div>
+          </div>
+        </div> 
+    <% }else{ %>
+        <div class="container mb-5 ">
+          <div class="row">
+            <div class="col-12">
+    
+              <!-- Heading -->
+              <h3 class="py-3 mb-10 text-center">Your Cart</h3>
+    
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-7">
+    
+              <!-- List group -->
+              <ul class="list-group list-group-lg list-group-flush-x mb-6">
+                <% s=0 %>
+                <%cart.forEach(c=>{ %>
+    
+                  <li class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-3">
+      
+                        <!-- Image -->
+                        <a href="product.html">
+                          <img src="<%=c.item.pic%>" alt="..." class="img-fluid">
+                        </a>
+      
                       </div>
-          
-                    </div>
-                    <div class="col-12 col-md-5 col-lg-4 offset-lg-1">
-          
-                      <!-- Total -->
-                      <div class="mb-2 font-weight-bold text-center">Order Summary</div>
-                      <div class="card mb-7 bg-light">
-                        <div class="card-body">
-                          <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
-                            <li class="list-group-item d-flex">
-                              <span>Subtotal</span> <span class="ml-auto font-size-sm">$00.00</span>
-                            </li>
-                            <li class="list-group-item d-flex">
-                              <span>Tax</span> <span class="ml-auto font-size-sm">$00.00</span>
-                            </li>
-                            <li class="list-group-item d-flex font-size-lg font-weight-bold">
-                              <span>Total</span> <span class="ml-auto font-size-sm">$00.00</span>
-                            </li>
-                            <li class="list-group-item font-size-sm text-center text-gray-500">
-                              Shipping cost calculated at Checkout *
-                            </li>
-                          </ul>
+                      <div class="col">
+      
+                        <!-- Title -->
+                        <div class="d-flex mb-2 font-weight-bold">
+                          <a class="text-body" href="product.html"><%= c.item.name %></a> <span class="ml-auto price">$<%= c.price%></span>
                         </div>
+      
+                        <!-- Text -->
+                       <!--  <p class="mb-7 font-size-sm text-muted">
+                          Size: M <br>
+                          Color: Red
+                        </p> -->
+                        <!--Footer -->
+                        <div class="d-flex align-items-center">
+      
+                          <!-- Remove -->
+<!--                           <form action="/cart/destroy" method="POST">
+                          <input type="hidden" name="productToBeRemoved" value="<%=c._id%>">
+                          <button class="btn btn-danger btn-sm" type="submit" > -->
+                          <div class="btn-group">
+                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="caret"></span></button> 
+                            <ul class="dropdown-menu">
+                              <li><a href="/reduce/<%= c.item._id %>"> Reduce by 1</a></li>
+                              <li><a href="/remove/<%= c.item._id %>"> Remove All</a></li>
+                            </ul>
+                            
+                          </div>
+                          
+                        </form>
+                        <!-- <input class="ml-2 w-50 quantity<%= c._id %> qt" type="number" id="" max="10" min="1" step="1" value="1" placeholder="quantity" onchange="q<%=c._id%>()" oninput="cal()">
+                         -->
+                         <span class="badge m-3 d-flex m-2" style="color: blanchedalmond; background-color:black;"><%= c.qty %></span>
+                        </div>
+<!--                         <p class="text-danger alert1<%= c._id %>" style="display: none;">*quantity cannot be more than 10 per order</p>
+                        <p class="text-danger alert2<%= c._id %>" style="display: none;">*Donot have enough</p> -->
                       </div>
-          
-                      <!-- Button -->
-                      <a class="btn btn-block btn-dark mb-2" href="checkout.html">Proceed to Checkout</a>
-          
-                      <!-- Link -->
-                      <a class="btn btn-link btn-sm px-0 text-body" href="shop.html">
-                        <i class="fa fa-arrow-left mr-2"></i> Continue Shopping
-                      </a>
-          
                     </div>
-                  </div>
+                  </li>
+<!--                   <% s=s+c.price %> -->
+                  <!-- <script>
+                          
+                   function q<%=c._id%>(){
+                      document.querySelector(".alert1<%=c._id%>").style.display = "none";
+                      document.querySelector(".alert2<%=c._id%>").style.display = "none";
+                      var qty = document.querySelector(".quantity<%= c._id %>");
+                      
+                      if(qty.value >= 10){
+                        if(qty.value > <%=c.quantity%>)
+                        { 
+                          document.querySelector(".alert2<%=c._id%>").style.display = "block";
+                          qty.value = <%=c.quantity%>;
+                          
+                          cal();
+                        }
+                        else
+                        {
+                          document.querySelector(".alert1<%=c._id%>").style.display = "block";
+                          qty.value = 10;
+                          cal()
+                        }
+                      }else{
+                        if(qty.value > <%=c.quantity%>)
+                        { 
+                          document.querySelector(".alert2<%=c._id%>").style.display = "block";
+                          qty.value = <%=c.quantity%>;
+                          cal()
+                        }
+                      }
+                    }
+    
+                  </script> -->
+                  
+              <%  }) %>
+              </ul>
+    
+              <!-- Footer -->
+              <!-- <div class="row align-items-end justify-content-between mb-10 mb-md-0">
+                <div class="col-12 col-md-7">
+    
+                  Coupon -->
+                 <!--  <form class="mb-7 py-3 mb-md-0">
+                    <label class="font-size-sm font-weight-bold" for="cartCouponCode">
+                      Coupon code:
+                    </label>
+                    <div class="row form-row">
+                      <div class="col">
+    
+                       Input
+                        <input class="form-control form-control-sm" id="cartCouponCode" type="text" placeholder="Enter coupon code*">
+                      </div>
+                      <div class="col-auto">
+    
+                      Button
+                        <button class="btn btn-sm btn-dark" type="submit">
+                          Apply
+                        </button>
+    
+                      </div>
+                    </div>
+                  </form>
+    
+                </div>
+              </div>-->
+    
+            </div> 
+            <div class="col-12 col-md-5 col-lg-4 offset-lg-1">
+    
+              <!-- Total -->
+              <div class="mb-2 font-weight-bold text-center">Order Summary</div>
+              <div class="card mb-7 bg-light">
+                <div class="card-body">
+                  <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
+<!--                     <li class="list-group-item d-flex">
+                      <span>Subtotal</span> <span class="ml-auto font-size-sm" id="subtot1">$<%=s%></span>
+                      <span class="ml-auto font-size-sm" id="subtot2" style="display:none;">$<%=s%></span>
+                    </li> -->
+<!--                     <li class="list-group-item d-flex">
+                      <span>Tax</span> <span class="ml-auto font-size-sm">$00.00</span>
+                    </li> -->
+                    <li class="list-group-item d-flex font-size-lg font-weight-bold">
+                      <span>Total</span> 
+                      <span class="ml-auto font-size-sm" id="total1">$<%=totalPrice%></span>
+                      <span class="ml-auto font-size-sm" style="display: none;" id="total2"></span>
+                    </li>
+                    <li class="list-group-item font-size-sm text-center text-gray-500">
+                      Shipping cost calculated at Checkout
+                    </li>
+                  </ul>
                 </div>
               </div>
-        
+    
+              <!-- Button -->
+              <a class="btn btn-block btn-dark mb-2" href="/checkout">Proceed to Checkout</a>
+    
+              <!-- Link -->
+              <a class="btn btn-link btn-sm px-0 text-body" href="/">
+                <i class="fa fa-arrow-left mr-2"></i> Continue Shopping
+              </a>
+    
+            </div>
+          </div>
+        </div>
+    <% } %>
+  
+
         <!--footer-->
         <%- include("partials/footer") -%>
         

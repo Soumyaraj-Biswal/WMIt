@@ -1,0 +1,121 @@
+
+<%- include("partials/header") -%>
+<!-- Breadcrum -->
+<div class="py-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Product</li>
+        </ol>
+    </nav>
+</div>
+
+<!--Product-->
+<div class="container py-3">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 col-md-6">
+
+                    <!--Product images -->
+                    <div class="row mb-10 mb-md-0">
+                        <img src="<%= product.pic %>" alt="image" style="height: auto;width: -webkit-fill-available;">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 pl-lg-10">
+                  <div class="row mb-1">
+                            <div class="col">
+                                <a class="text-muted" href="#">category</a>
+                            </div>
+                            <div class="col-auto">
+                                <div class="rating font-size-xs text-dark" style="display: inline-flex">
+                                    <div class="rating-item">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="rating-item">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="rating-item">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="rating-item">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="rating-item">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <a class="font-size-sm text-reset ml-2" href="#">Reviews(0)</a>
+                            </div>
+                        </div>
+                  <h3 class="mb-2"><%= product.name %></h3>
+                  <div class="mb-7 text-gray-400">
+                      price:
+                            <span class="ml-1 font-weight-bold"><%= product.price %>$</span>
+                        </div>
+                  <form action="">
+                            
+                            <div class="form-group">
+                                
+                               <!--  <div class="mb-2">-->
+                                    
+
+                                    <!-- Quantity -->
+                                  <!--   <p class="mb-4 mt-2">Quantity:
+                                        <select class="mb-2">
+                                            <option value="1" selected="">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </p>
+                                </div> -->
+
+                                <div class="form-row mb-7">
+                                    <div class="col-12 col-lg-auto">
+                                        <button class="btn btn-block btn-dark mb-2" data-toggle="button">
+                                            <i class="fa fa-mail mr-2"></i> Buy Now
+                                        </button>
+                                    </div>
+                                   
+                                    <div class="col-12 col-lg-auto">
+                                        <a href="/product/<%= product._id %>/cart">
+                                            Add to cart <i class="fa fa-heart ml-2"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <h3>description</h3>
+                        <p><%= product.description %></p>
+                        <hr>
+                        <div class="well">
+                            <h3>Comments</h3>
+                            <div class="text-right">
+                               
+                            </div>
+                            
+                            <% product.comments.forEach(comment=>{ %>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <strong><%= comment.author.username %></strong>
+                                        <span class="pull-right">10 days ago</span>
+                                        <p>
+                                            <%= comment.text %>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                            <% }) %>
+                        </div> 
+                </div>
+                
+            </div>
+        </div>
+
+        
+        </div>
+       
+    </div>
+    <%- include("partials/footer") -%>

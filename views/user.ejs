@@ -1,0 +1,37 @@
+<%- include("partials/header") %>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>User Profile</h1>
+            <hr>
+            
+           <% if(orders){ %>
+            <h2>My Orders</h2>
+            <% orders.forEach(function(o){ %>
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <ul class="list-group">
+                            <% o.items.forEach(function(itm){ %>
+                            <li class="list-group-item"> 
+                                <a href="/product/<%= itm.item._id %>"><%= itm.item.name %></a> | <%= itm.qty %> units
+                                <span class="float-right">
+                                    <a href="/product/<%= itm.item._id %>/comment" >Add a review </a>
+                                    <span class="badge badge-dark "> <%=itm.price %> </span>
+                                </span>
+                            </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                      <b>Total Price: $<%=o.cart.totalPrice %></b>
+                    </div>
+                  </div>
+                <% }) %>
+           <% }else{ %>
+            <h1>empty</h1> 
+            <% } %>
+        </div>
+    </div>
+
+<%- include("partials/footer") %>

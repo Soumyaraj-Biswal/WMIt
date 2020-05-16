@@ -1,5 +1,27 @@
 <%- include("partials/header") -%>
 
-<h1 class="jumbotron">coming soon!!!!!</h1>
+<div class="row mt-5">
+    <% products.forEach(e=>{ %>
+
+    
+      
+          <div class="col-sm-12 col-md-4">
+              <div class="card m-2">
+                <a href="/product/<%= e._id %>" style="text-decoration: none; color: darkslategray;">
+                <img src='<%= e.pic %>' class="card-img-top img-responsive" style="height: 200px;" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%= e.name %></h5>
+                  <div>
+                      <div class="price" style="float:left;"><%= e.price %>$</div>
+                      <a href="/product/<%= e.name %>" class="btn btn-success" style="float:right;">Buy now</a>
+                  </div>
+                </div>
+              </a>
+              </div>
+          </div>     
+      
+    
+       <% }); %>
+    </div>
 
 <%- include("partials/footer") -%>

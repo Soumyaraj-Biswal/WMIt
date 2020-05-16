@@ -44,11 +44,15 @@
                     <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">catagory</a>
                 </div>
                 <span style="font-size:30px;cursor:pointer" class="openbtn" onclick="openNav()">&#9776;</span>
-                <a class="brand" href="#"> WMIt</a>
-
-                <a class="btn btn-outline-light d-lg-none" href="#">Login <span class="sr-only">(current)</span></a>
-                <a class="btn btn-danger ml-2 d-lg-none" href="#">cart</a>
-
+                <a class="brand" href="/"> WMIt</a>
+                <% if(!currentUser){ %>
+                <a class="btn btn-outline-light d-lg-none" href="/login">Login <span class="sr-only">(current)</span></a>
+                <a class="btn btn-danger ml-2 d-lg-none" href="/register">Sign-Up <span class="sr-only">(current)</span></a>
+                <% }else{ %>
+                    <a class="btn btn-danger ml-2 d-lg-none" href="/user"><%= currentUser.user %><span class="sr-only">(current)</span></a>
+                    <a class="btn btn-danger ml-2 d-lg-none" href="/logout">logout <span class="sr-only">(current)</span></a>
+                    <a class="btn btn-danger ml-2 d-lg-none" href="/cart">cart</a>
+                    <% } %>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <div class="search-container ml-5">
@@ -59,12 +63,30 @@
                     </div>
 
                     <ul class="navbar-nav ml-auto">
+                        <% if(!currentUser){ %>
                         <li class="nav-item active">
-                            <a class="btn btn-outline-light" href="#">Login <span class="sr-only">(current)</span></a>
+                            <a class="btn btn-outline-light" href="/login">Login <span class="sr-only">(current)</span></a>
                         </li>
+                        <li class="nav-item active">
+                            <a class="btn btn-outline-light" href="/register">Sign-Up <span class="sr-only">(current)</span></a>
+                        </li>
+                        <% }else{ %>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/user"><%= currentUser.user %><span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="btn btn-outline-light" href="/logout">logout <span class="sr-only">(current)</span></a>
+                        </li>
+                        <% } %>                       
                         <li class="nav-item ml-3">
-                            <a class="btn btn-danger" href="#">cart</a>
+                            <a class="btn btn-primary" href="/cart">
+                                cart
+                                <% if(session.cart && session.cart.totalQty != 0){ %>
+                                <span class="badge badge-light"><%= session.cart.totalQty %></span>
+                                <% } %>
+                            </a>
                         </li>
+
                         <li class="nav-item d-lg-none">
                             <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">catagory</a>
                         </li>
